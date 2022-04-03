@@ -6,6 +6,8 @@
   
 }
 
+
+
 .separator{
   width: 80%;
   margin: 20px 0px;
@@ -23,8 +25,13 @@
   margin: 25px 20px 0 0;
   font-weight: bolder;
   font-size: 25px;
+}
 
-  
+.product-type{
+  font-weight: bolder;
+  font-size: 15px;
+  writing-mode: vertical-rl;
+  text-orientation: upright;
 }
 
 .vertical-holder{
@@ -42,6 +49,10 @@
   border: none;
 }
 
+.information-new{
+  border-style:dotted;
+}
+
 .horizontal-holder{
   display: flex;
   flex-direction: row;
@@ -52,12 +63,15 @@
   border-width: 1px;
 }
 
+
+
+
 .btn-holder{
   display: flex;
   flex-direction: row;
   flex-wrap: wrap;
   align-items: flex-start;
-  margin-top:  20px;
+  margin-top:  30px;
 }
 
 .btn{
@@ -67,6 +81,11 @@
   color: white;
   margin: 0 2px;
   border-radius: 20%;
+}
+
+.btn0{
+  background-color: green;
+  margin-bottom: 10px;
 }
 
 .btn1{
@@ -81,4 +100,10 @@
   background-color: red;
 }
 
+.btn4{
+  background-color: lightskyblue;
+}
 
+.noshow{
+  display:none;
+}

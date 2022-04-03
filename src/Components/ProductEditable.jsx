@@ -17,7 +17,7 @@ export default function ProductEditable({nr,list}){
             <li className="product">
                 <div className="vertical-holder">
                     <label>Name:</label>
-                    <input className="information" type="text" value={name} />
+                    <input className="information" type="text"  value={name} />
                 </div>
                 <div className="vertical-holder">
                     <label>Supplier:</label>
