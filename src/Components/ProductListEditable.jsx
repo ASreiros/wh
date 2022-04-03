@@ -15,22 +15,7 @@ export default function ProductListEditable(){
     useEffect(() => {
         let temp = JSON.parse(localStorage.getItem("whProductList20220402"))   
         if(temp === null){
-            temp = [{
-                name:"Pienas",
-                supplier:"Rokiškio pienas",
-                country:"LT",
-                quantity:12,
-                price:1.20,
-                wei:1000
-                }
-                ,{
-                    name:"Bananai",
-                    supplier:"Maroko foods",
-                    country:"Maroko",
-                    quantity:500,
-                    price:0.15,
-                    wei:35
-                }];      // make it [] after testing
+            temp = []
              localStorage.setItem("whProductList20220402", JSON.stringify(temp))
         } 
         setProducts(temp)
