@@ -1,6 +1,7 @@
 import { useState, useEffect } from "react"
 import ProductEditable from "./ProductEditable"
 import { v4 as uuidv4 } from 'uuid';
+import InfoLineNew from "./InfoLineNew"
 
 export default function ProductListEditable(){
     const [products, setProducts] = useState([])
@@ -25,19 +26,25 @@ export default function ProductListEditable(){
     const goCreate = ()=>{
         document.querySelector(".product-new").classList.remove("noshow")
         document.querySelector("#btn1").classList.remove("noshow")
+        clearInput()
     }
 
     const goCancel = ()=>{
         document.querySelector(".product-new").classList.add("noshow")
         document.querySelector("#btn1").classList.add("noshow")
         document.querySelector("#error1").classList.add("noshow")
+        clearInput()
+    }
+
+
+    const clearInput = () =>{
         setName("")
         setCountry("")
-        setCountry("")
+        setSupplier("")
         setWei("")
         setQuantity(0)
         setPrice(0)
-    }
+    }  
 
     const goSave = ()=>{
         if((newname.length>0)&&(newquantity>0)&&(newprice>0)){
@@ -46,6 +53,7 @@ export default function ProductListEditable(){
             document.querySelector("#error1").classList.add("noshow")
             let temp = JSON.parse(localStorage.getItem("whProductList20220402"))
             temp.unshift({
+                    id:`id${uuidv4()}`,
                     name: newname,
                     supplier:newsupplier,
                     country:newcountry,
@@ -98,30 +106,12 @@ export default function ProductListEditable(){
             </div>    
             <div className="horizontal-holder product-new noshow">
                 <li className="product">
-                     <div className="vertical-holder">
-                        <label>Name:</label>
-                        <input onChange={ChangeName} className="information-new" type="text" value={newname} />
-                    </div>
-                    <div className="vertical-holder">
-                        <label>Supplier:</label>
-                        <input onChange={ChangeSupplier} className="information-new" type="text" value={newsupplier} />
-                    </div>
-                    <div className="vertical-holder">
-                        <label>country:</label>
-                        <input onChange={ChangeCountry} className="information-new" type="text" value={newcountry} />
-                    </div>
-                    <div className="vertical-holder">
-                        <label>Weight(grams):</label>
-                        <input onChange={ChangeWei} className="information-new" type="number" value={newwei} />
-                    </div>
-                    <div className="vertical-holder">
-                        <label>Quantity:</label>
-                        <input onChange={ChangeQuantity} className="information-new"  type="number" value={newquantity} />
-                    </div>
-                    <div className="vertical-holder">
-                        <label>Price (eur):</label>
-                        <input onChange={ChangePrice} className="information-new" type="number" value={newprice} />
-                    </div>
+                    <InfoLineNew change={ChangeName} label="Name:" type="text" value={newname} ></InfoLineNew>
+                    <InfoLineNew change={ChangeSupplier} label="Supplier:" type="text" value={newsupplier} ></InfoLineNew>
+                    <InfoLineNew change={ChangeCountry} label="Country:" type="text" value={newcountry} ></InfoLineNew>
+                    <InfoLineNew change={ChangeWei} label="Weight(grams):" type="number" value={newwei} ></InfoLineNew>
+                    <InfoLineNew change={ChangeQuantity} label="Quantity:" type="number" value={newquantity} ></InfoLineNew>
+                    <InfoLineNew change={ChangePrice} label="Price (eur):" type="number" value={newprice} ></InfoLineNew>
                 </li>
                 <div id="btn1" className="btn-holder noshow">
                     <button onClick={goSave} className="btn btn1">Save</button>
