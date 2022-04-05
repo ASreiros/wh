@@ -17,10 +17,22 @@ export default function ProductListEditable(){
         let temp = JSON.parse(localStorage.getItem("whProductList20220402"))   
         if(temp === null){
             temp = []
-             localStorage.setItem("whProductList20220402", JSON.stringify(temp))
+            localStorage.setItem("whProductList20220402", JSON.stringify(temp))
         } 
         setProducts(temp)
     },[]);
+
+    const goDelete = btn => {
+        let temp = JSON.parse(localStorage.getItem("whProductList20220402"))
+        let temp2 = []
+        temp.forEach(pr => {
+            if (pr.id !== btn.target.value) {
+                temp2.push(pr)
+            }
+        });
+        localStorage.setItem("whProductList20220402", JSON.stringify(temp2))
+        setProducts(temp2)
+    }
 
 
     const goCreate = ()=>{
@@ -123,7 +135,7 @@ export default function ProductListEditable(){
                 {
                     products.map((pr,i)=>{ 
                         return(
-                            <ProductEditable key={uuidv4()} nr={i+1} list={pr}></ProductEditable>
+                            <ProductEditable del={goDelete} key={uuidv4()} nr={i+1} list={pr}></ProductEditable>
                         )
                     })
                 }

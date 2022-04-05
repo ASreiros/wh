@@ -1,8 +1,8 @@
-// import { useState } from "react"
+import { useEffect } from "react"
 import InfoLine from "./InfoLine"
 import ProductButtons from "./ProductButtons"
 
-export default function ProductEditable({nr,list}){
+export default function ProductEditable({nr,list, del}){
     // const [name, setName] = useState(list.name)
     // const [supplier, setSupplier] = useState(list.supplier)
     // const [wei, setSvoris] = useState(list.wei)
@@ -11,6 +11,9 @@ export default function ProductEditable({nr,list}){
     // const [price, setPrice] = useState(list.price)
     // const [total, setTotal] = useState(Math.round(list.price*list.quantity*100)/100)
 
+    useEffect(() => {
+        console.log(list);
+    },[]);
 
     
     return(
@@ -25,7 +28,7 @@ export default function ProductEditable({nr,list}){
                 <InfoLine label="Price (eur):" type="number" value={list.price} ></InfoLine>
                 <InfoLine label="Total (eur):" type="number" value={Math.round(list.price*list.quantity*100)/100} class="information"></InfoLine>
             </li>
-            <ProductButtons></ProductButtons>
+            <ProductButtons del={del} id={list.id}></ProductButtons>
         </div>    
     )
 }
