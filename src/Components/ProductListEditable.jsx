@@ -22,16 +22,17 @@ export default function ProductListEditable(){
         setProducts(temp)
     },[]);
 
-    const goDelete = btn => {
+    const goDelete = id => {
+        
         let temp = JSON.parse(localStorage.getItem("whProductList20220402"))
         let temp2 = []
         temp.forEach(pr => {
-            if (pr.id !== btn.target.value) {
+             if (pr.id !== id) {
                 temp2.push(pr)
             }
         });
         localStorage.setItem("whProductList20220402", JSON.stringify(temp2))
-        setProducts(temp2)
+        setProducts(temp2)  
     }
 
 

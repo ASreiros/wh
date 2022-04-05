@@ -1,5 +1,5 @@
 export default function Title(){
     return(
-        <h1>Warehouse</h1>
+        <h1 >Warehouse</h1>
     )
 }

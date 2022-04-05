@@ -1,3 +1,7 @@
+body{
+  background-color: #FEFAE0;
+}
+
 .App {
   text-align: center;
   display: flex;
@@ -6,11 +10,18 @@
   
 }
 
+h1{
+  color: #CCD5AE;
+    text-shadow: 1px 0 0 #000, 0 -1px 0 #000, 0 1px 0 #000, -1px 0 0 #000;
+}
 
 
 .separator{
   width: 80%;
   margin: 20px 0px;
+  color: #d4a373;
+  background-color: #d4a373;
+  height: 1px;
 }
 
 .product{
@@ -47,6 +58,7 @@
 
 .information{
   border: none;
+  background-color: #FEFAE0;
 }
 
 .information-new{
@@ -59,7 +71,7 @@
   flex-wrap: wrap;
   align-items: flex-start;
   border-style: dashed none dashed none;
-  border-color: rgb(0, 0, 0, 0.3);
+  border-color: #d4a373;
   border-width: 1px;
 }
 
