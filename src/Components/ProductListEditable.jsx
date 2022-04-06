@@ -2,6 +2,7 @@ import { useState, useEffect } from "react"
 import ProductEditable from "./ProductEditable"
 import { v4 as uuidv4 } from 'uuid';
 import InfoLineNew from "./InfoLineNew"
+import Edit from "./Edit";
 
 export default function ProductListEditable(){
     const [products, setProducts] = useState([])
@@ -12,6 +13,8 @@ export default function ProductListEditable(){
     const [newcountry, setCountry] = useState("")
     const [newquantity, setQuantity] = useState(0)
     const [newprice, setPrice] = useState(0)
+    const [modal, setModal] = useState(0)
+    const[editData, setEditData] = useState({})
 
     useEffect(() => {
         let temp = JSON.parse(localStorage.getItem("whProductList20220402"))   
@@ -36,6 +39,7 @@ export default function ProductListEditable(){
     }
 
 
+
     const goCreate = ()=>{
         document.querySelector(".product-new").classList.remove("noshow")
         document.querySelector("#btn1").classList.remove("noshow")
@@ -49,7 +53,21 @@ export default function ProductListEditable(){
         clearInput()
     }
 
+    // edit functions below
+    const  CancelEdit = () =>{
+        setModal(0)
+      }
 
+      //this fires on click in product line
+      const goEdit = id =>{
+        setModal(id)
+        console.log(id);
+        const data = products.filter(a=> a.id === id)[0]
+        console.log(data);
+        setEditData(data)
+      }
+
+  // edit functions above
     const clearInput = () =>{
         setName("")
         setCountry("")
@@ -79,6 +97,22 @@ export default function ProductListEditable(){
         } else{
             document.querySelector("#error1").classList.remove("noshow")
         } 
+    }
+
+
+    const goReplace=obj=>{
+        let data = JSON.parse(localStorage.getItem("whProductList20220402"))
+        let newdata = []
+        for (let i = 0; i < data.length; i++) {
+            if(data[i].id !== obj.id){
+                newdata.push(data[i])
+            } else{
+                newdata.push(obj)
+            }
+        }
+        localStorage.setItem("whProductList20220402", JSON.stringify(newdata))
+        setProducts(newdata)
+        setModal(0)
     }
 
     const ChangeName = v =>{
@@ -136,11 +170,14 @@ export default function ProductListEditable(){
                 {
                     products.map((pr,i)=>{ 
                         return(
-                            <ProductEditable del={goDelete} key={uuidv4()} nr={i+1} list={pr}></ProductEditable>
+                            <ProductEditable edit={goEdit} del={goDelete} key={uuidv4()} nr={i+1} list={pr}></ProductEditable>
                         )
                     })
                 }
             </ol>
+            {
+            modal ? <Edit data={editData} replace={goReplace} cancel={CancelEdit}></Edit> : null
+            }
         </>
     )
 }
